@@ -1,0 +1,67 @@
+
+<!-- Just be lazy here for now. Todo: move to individual file -->
+<script type="text/template" class="tmpl-header">
+    <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+            <h1><a href="#"><%= title %></a></h1>
+        </li>
+    </ul>
+</script>
+
+<script type="text/template" class="tmpl-word-index">
+<div class="row">
+  <div class="small-12 columns">
+      <ul class="word-index-list">
+          <% _.each(indexes, function(index) { %>
+              <li data-list-id="<%= index.id %>">
+                  <span><%= index.title %></span>
+                  <span class="icon"><i class="myicon-right-circled"></i></span>
+              </li>
+          <% }); %>
+      </ul>
+  </div>
+</div>
+</script>
+
+<script type="text/template" class="tmpl-word-list">
+<div class="row">
+  <div class="small-12 columns">
+      <ul class="word-index-list">
+          <% _.each(wordList, function(wordItem) { %>
+              <li>
+                  <span><%= wordItem.word %></span>
+                  <span class="icon"><i class="myicon-plus-circled"></i></span>
+              </li>
+          <% }); %>
+      </ul>
+  </div>
+</div>
+</script>
+
+
+<script type="text/template" class="tmpl-footer">
+<div class="row full-width">
+    <ul class="small-block-grid-3">
+        <li>
+            <div>
+                <i class="myicon-book-alt"></i>
+            </div>
+            <div>
+                <div><a href="#">Library</a></div>
+            </div>
+        </li>
+        <li><div>
+            <i class="myicon-bookmarks"></i>
+            </div>
+            <div><a href="#">Bookmark</a></div>
+        </li>
+        <li>
+            <div>
+            <i class="myicon-book-alt"></i>
+                </div>
+            <div><a href="#">Progress</a></div>
+        </li>
+    </ul>
+</div>
+</script>
