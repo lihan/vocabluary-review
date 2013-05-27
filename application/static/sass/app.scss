@@ -1,0 +1,117 @@
+// Global Foundation Settings
+@import "settings";
+
+// Comment out this import if you don't want to use normalize
+@import "normalize";
+
+// Comment out this import if you are customizing you imports below
+@import "foundation";
+
+// Import specific parts of Foundation by commenting the import "foundation"
+// and uncommenting what you want below. You must uncomment the following if customizing
+
+@import "foundation/components/global"; // *always required
+@import "foundation/components/grid";
+@import "foundation/components/visibility";
+@import "foundation/components/block-grid";
+@import "foundation/components/type";
+@import "foundation/components/buttons";
+@import "foundation/components/forms"; // *requires components/buttons
+@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+@import "foundation/components/button-groups"; // *requires components/buttons
+@import "foundation/components/dropdown-buttons"; // *requires components/buttons
+@import "foundation/components/split-buttons"; // *requires components/buttons
+@import "foundation/components/flex-video";
+@import "foundation/components/section";
+@import "foundation/components/top-bar";  // *requires components/grid
+//@import "foundation/components/orbit";
+//@import "foundation/components/reveal";
+//@import "foundation/components/joyride";
+//@import "foundation/components/clearing";
+//@import "foundation/components/alert-boxes";
+//@import "foundation/components/breadcrumbs";
+//@import "foundation/components/keystrokes";
+//@import "foundation/components/labels";
+//@import "foundation/components/inline-lists";
+//@import "foundation/components/pagination";
+//@import "foundation/components/panels";
+//@import "foundation/components/pricing-tables";
+//@import "foundation/components/progress-bars";
+//@import "foundation/components/side-nav";
+//@import "foundation/components/sub-nav";
+//@import "foundation/components/switch";
+//@import "foundation/components/magellan";
+//@import "foundation/components/tables";
+//@import "foundation/components/thumbs";
+//@import "foundation/components/tooltips";
+//@import "foundation/components/dropdown";
+
+
+// Compass Imports
+@import "compass/css3";
+
+
+@import "buttons";
+@import "pagination";
+@import "topbar";
+@import "subnav";
+@import "forms";
+@import "sections";
+@import "sidenav";
+@import "misc";
+
+@import "fonts";
+
+.row.full-width {
+  max-width: 100% !important;
+}
+
+ul.word-index-list {
+  list-style: none;
+  & > li {
+    cursor: pointer;
+    background: #F5F5F5;
+    @include border-radius(5px);
+    padding: 10px;
+    margin-bottom: 7px;
+    .icon {
+      float: right;
+    }
+  }
+}
+
+.footer-menu {
+  width: 100%;
+  position: fixed;
+  margin: 5px 0 0 0;
+  bottom: 0;
+  & > .row > ul {
+    list-style: none;
+
+    li {
+
+      i {
+        color: #FFFFFF;
+        margin: 0 auto;
+      }
+      div {
+        text-align: center;
+      }
+      a {
+       color: #FFFFFF;
+      }
+      &.active {
+        background: #34495e;
+      }
+      cursor: pointer;
+      $bg: #000023;
+      $dark-bg: darken($bg, 5%);
+      padding: 6px 0;
+      $darker-bg: darken($bg, 10%);
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      @include background-image(linear-gradient($bg, $bg 5%, $darker-bg));
+    }
+
+
+  }
+}

@@ -37,8 +37,7 @@ function(Backbone, _, Models) {
         template: _.template($('.tmpl-word-list').html()),
         initialize: function(wordListCollection) {
             this.wordListCollection = wordListCollection;
-            // todo: We definitely don't want to do this
-            // render it after it all fetched
+            // todo: We definitely don't want to do this render it after it all fetched
             this.wordListCollection.on('add', this.render, this);
             this.wordListCollection.fetch();
         },
@@ -65,8 +64,7 @@ function(Backbone, _, Models) {
             this.collection.fetch();
         },
         itemClickedHandler: function(e) {
-            console.log('click');
-            debugger;
+
             // todo: circular dependency, fix!!!
             var App = require('app/app');
             var clickedId = $(e.target).data('list-id');
@@ -85,15 +83,20 @@ function(Backbone, _, Models) {
         el: $('.js-app'),
         initialize: function(indexCollection) {
             this.contentViews = [];
+
+            // We need to bind this to these functions, otherwise, the 'this' would lost in the subsequent calls
+            // todo: Do a proper research on bind, bindAll !!
             _.bindAll(this, 'unbindContentView');
             _.bindAll(this, 'renderSubViews');
+
             this.indexCollection = indexCollection;
             this.renderSubViews();
-
         },
         renderSubViews: function() {
             new HeaderView({el: $('.js-top-bar'), model: header}).render();
+
             this.contentViews.push(new WordListIndexView({collection: this.indexCollection}).render());
+
             new FooterView({el: $('.js-footer-menu')}).render();
         },
         unbindContentView: function() {

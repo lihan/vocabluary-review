@@ -5,6 +5,7 @@ define([
 
 ],
     function (App, Backbone) {
+        // todo: refactor into two parts, render frame and render contents
         App.initialize();
 
         return Backbone.Router.extend({

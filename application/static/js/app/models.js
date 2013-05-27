@@ -4,7 +4,6 @@ define(
 function(Backbone) {
 
     // UI models
-
     var Header = Backbone.Model.extend({
         defaults: {
             title: "Select Learning module"

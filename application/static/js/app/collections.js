@@ -13,9 +13,7 @@ function(Backbone, Models) {
     var WordIndexCollection = Backbone.Collection.extend({
         model: Models.WordIndex,
         url: function() {
-            // todo: I believe this is joke
-            // fix the ugly string concatenation
-            return window.location.protocol + "//" + window.location.host + '/api/v1/word_index/';
+            return '/api/v1/word_index/';
         }
     });
 
@@ -25,8 +23,7 @@ function(Backbone, Models) {
             this.id = wordListId;
         },
         url: function() {
-            // todo: I believe this is joke
-            return window.location.protocol + "//" + window.location.host + '/api/v1/word_list/' + this.id;
+            return '/api/v1/word_list/' + this.id;
         }
     });
 
