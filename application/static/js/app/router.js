@@ -11,14 +11,19 @@ define([
         return Backbone.Router.extend({
             routes: {
                 "": 'init',
-                "list/:id": "wordList"
+                "list/:id": "wordList",
+                "bookmark": "showBookmark"
             },
             init: function() {
-                App.initialize();
+                App.showIndex();
             },
             wordList: function(id) {
                 App.unbindCurrentView();
                 App.showList(id);
+            },
+            showBookmark: function() {
+                App.unbindCurrentView();
+                App.showBookmarkView();
             }
         });
     });

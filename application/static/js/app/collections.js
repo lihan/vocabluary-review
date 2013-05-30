@@ -10,6 +10,8 @@ define(
 
 function(Backbone, Models) {
 
+
+
     var WordIndexCollection = Backbone.Collection.extend({
         model: Models.WordIndex,
         url: function() {
@@ -27,9 +29,16 @@ function(Backbone, Models) {
         }
     });
 
+    var BookmarkedWordCollection = Backbone.Collection.extend({
+        model: Models.BookmarkedWord,
+        url: '/api/v1/bookmarks/'
+    });
+    window.BookmarkedWordCollection = BookmarkedWordCollection
+
     return {
         'WordIndexCollection': WordIndexCollection,
-        'WordListCollection': WordListCollection
+        'WordListCollection': WordListCollection,
+        'BookmarkedWordCollection': BookmarkedWordCollection
     }
 
 });

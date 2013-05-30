@@ -77,6 +77,14 @@ ul.word-index-list {
     .icon {
       float: right;
     }
+    &:hover {
+      background-color: $midnight-blue;
+      color: #FFFFFF;
+    }
+    &:active {
+      background-color: $pomegranate;
+      color: #FFFFFF;
+    }
   }
 }
 
@@ -87,9 +95,8 @@ ul.word-index-list {
   bottom: 0;
   & > .row > ul {
     list-style: none;
-
     li {
-
+      position: relative;
       i {
         color: #FFFFFF;
         margin: 0 auto;
@@ -99,6 +106,9 @@ ul.word-index-list {
       }
       a {
        color: #FFFFFF;
+      }
+      .footer-menu-title {
+        font-size: 13px;
       }
       &.active {
         background: #34495e;
@@ -114,4 +124,14 @@ ul.word-index-list {
 
 
   }
+}
+.notification-bubble {
+  background: #FF0000;
+  right: 44px;
+  top: -13px;
+  text-align: center;
+  border-radius: 17px;
+  line-height: 18px;
+  min-width: 21px;
+  border: 2px solid #FFFFFF;
 }

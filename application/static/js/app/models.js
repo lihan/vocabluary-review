@@ -6,7 +6,7 @@ function(Backbone) {
     // UI models
     var Header = Backbone.Model.extend({
         defaults: {
-            title: "Select Learning module"
+            title: "Beat IELTS vocabulary"
         }
     });
 
@@ -20,9 +20,31 @@ function(Backbone) {
 
     var WordIndex = Backbone.Model.extend({});
 
+    var BookmarkedWord = Backbone.Model.extend({
+        urlRoot: '/api/v1/bookmarks/',
+        defaults: {
+            'word': {
+                "word"      :  "None",
+                "meaning"   :  "None"
+            }
+        },
+        model: {
+            word: Word
+        },
+        parse: function(response){
+            for(var key in this.model) {
+                var embeddedClass = this.model[key];
+                var embeddedData = response[key];
+                response[key] = new embeddedClass(embeddedData, {parse: true});
+            }
+            return response;
+        }
+    });
+    window.BookmarkedWord = BookmarkedWord;
     return {
         'Word': Word,
         'WordIndex': WordIndex,
-        'Header': Header
+        'Header': Header,
+        'BookmarkedWord': BookmarkedWord
     };
 });

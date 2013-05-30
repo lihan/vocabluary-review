@@ -1,4 +1,3 @@
-
 <!-- Just be lazy here for now. Todo: move to individual file -->
 <script type="text/template" class="tmpl-header">
     <ul class="title-area">
@@ -10,58 +9,74 @@
 </script>
 
 <script type="text/template" class="tmpl-word-index">
-<div class="row">
-  <div class="small-12 columns">
-      <ul class="word-index-list">
-          <% _.each(indexes, function(index) { %>
-              <li data-list-id="<%= index.id %>">
-                  <span><%= index.title %></span>
-                  <span class="icon"><i class="myicon-right-circled"></i></span>
-              </li>
-          <% }); %>
-      </ul>
-  </div>
-</div>
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="word-index-list">
+                <% _.each(indexes, function(index) { %>
+                <li data-list-id="<%= index.id %>">
+                    <span><%= index.title %></span>
+                    <span class="icon"><i class="myicon-right-circled"></i></span>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
 </script>
 
 <script type="text/template" class="tmpl-word-list">
-<div class="row">
-  <div class="small-12 columns">
-      <ul class="word-index-list">
-          <% _.each(wordList, function(wordItem) { %>
-              <li>
-                  <span><%= wordItem.word %></span>
-                  <span class="icon"><i class="myicon-plus-circled"></i></span>
-              </li>
-          <% }); %>
-      </ul>
-  </div>
-</div>
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="word-index-list js-word-list">
+                <% _.each(wordList, function(wordItem) { %>
+                <li data-id="<%= wordItem.id %>">
+                    <span><%= wordItem.word %></span>
+                    <span class="icon"><i class="myicon-plus-circled"></i></span>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
 </script>
 
+<script type="text/template" class="tmpl-bookmark-view">
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="word-index-list js-word-list"></ul>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" class="tmpl-bookmark-item-view">
+    <span><%= word %></span>
+    <span class="icon"><i class="myicon-minus-circled"></i></span>
+</script>
+<script type="text/template" class="tmpl-notification-bubble">
+    <span class="notification-bubble">8</span>
+</script>
 
 <script type="text/template" class="tmpl-footer">
-<div class="row full-width">
-    <ul class="small-block-grid-3">
-        <li>
-            <div>
-                <i class="myicon-book-alt"></i>
-            </div>
-            <div>
-                <div><a href="#">Library</a></div>
-            </div>
-        </li>
-        <li><div>
-            <i class="myicon-bookmarks"></i>
-            </div>
-            <div><a href="#">Bookmark</a></div>
-        </li>
-        <li>
-            <div>
-            <i class="myicon-book-alt"></i>
-                </div>
-            <div><a href="#">Progress</a></div>
-        </li>
-    </ul>
-</div>
+    <div class="row full-width">
+        <ul class="small-block-grid-2">
+            <li>
+                <a href="#">
+                    <div>
+                        <i class="myicon-book-alt"></i>
+                    </div>
+                    <div class="footer-menu-title">
+                        Library
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#bookmark">
+                    <div>
+                        <i class="myicon-bookmarks"></i>
+                    </div>
+                    <div class="footer-menu-title">
+                        Bookmark
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </script>

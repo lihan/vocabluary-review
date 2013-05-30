@@ -6,11 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 define(
-    ['backbone', 'underscore', 'app/models'],
+    ['backbone', 'underscore', 'app/models', 'app/collections'],
 
-function(Backbone, _, Models) {
+function(Backbone, _, Models, Collections) {
 
     var header = new Models.Header();
+    var BookmarkedWord = Models.BookmarkedWord;
+
+
+
 
     var HeaderView = Backbone.View.extend({
         template: _.template($('.tmpl-header').html()),
@@ -35,11 +39,24 @@ function(Backbone, _, Models) {
     var WordListView = Backbone.View.extend({
         el: '.js-main-view',
         template: _.template($('.tmpl-word-list').html()),
+        events: {
+            'click li': 'wordClickedHandler'
+        },
         initialize: function(wordListCollection) {
             this.wordListCollection = wordListCollection;
             // todo: We definitely don't want to do this render it after it all fetched
             this.wordListCollection.on('add', this.render, this);
             this.wordListCollection.fetch();
+        },
+        wordClickedHandler: function(ev) {
+            var wordId = $(ev.target).data('id');
+
+            var bookmark = new BookmarkedWord({
+                'word': {
+                    'id': wordId
+                }
+            });
+            bookmark.save();
         },
         render: function() {
             var self = this;
@@ -60,11 +77,12 @@ function(Backbone, _, Models) {
         initialize: function() {
             // todo: We definitely don't want to do this
             // render it after it all fetched
+            this.render();
             this.collection.on('add', this.render, this);
             this.collection.fetch();
+
         },
         itemClickedHandler: function(e) {
-
             // todo: circular dependency, fix!!!
             var App = require('app/app');
             var clickedId = $(e.target).data('list-id');
@@ -79,35 +97,88 @@ function(Backbone, _, Models) {
         }
     });
 
+    var BookmarkItemView = Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('.tmpl-bookmark-item-view').html()),
+        events: {
+            'click': 'deleteItem'
+        },
+        initialize: function() {
+
+            this.render();
+            _.bindAll(this, 'showDeleteItem');
+            this.model.on('destroy', this.showDeleteItem);
+        },
+        showDeleteItem: function() {
+            this.$el.slideUp();
+        },
+        deleteItem: function(ev) {
+            this.model.destroy();
+        },
+        render: function() {
+            this.$el.html(
+            this.template({
+                id: this.model.toJSON().id,
+                word: this.model.get('word').get('word')
+            }));
+            return this;
+        }
+    });
+
+    var BookmarkListView = Backbone.View.extend({
+        el: $('.js-main-view'),
+        template: _.template($('.tmpl-bookmark-view').html()),
+        initialize: function() {
+            this.render();
+            this.bookmarkedWordCollection = new Collections.BookmarkedWordCollection();
+            this.bookmarkedWordCollection
+            this.bookmarkedWordCollection.fetch();
+            this.renderCollection();
+            this.listenTo(this.bookmarkedWordCollection, 'add', this.addItem);
+        },
+        render: function() {
+            this.$el.html(this.template({}));
+            return this;
+        },
+        renderCollection: function() {
+
+            var i = 0,
+                j = this.bookmarkedWordCollection.length;
+
+            for (; i < j; i++) {
+                var instance = this.bookmarkedWordCollection.models[i];
+                this.addItem(instance);
+            }
+        },
+        addItem: function(instance) {
+            var $el = $(this.el);
+
+            if (this.bookmarkedWordCollection.indexOf(instance) != -1) {
+                view = new BookmarkItemView({
+                    model: instance
+                });
+                $el.find('.js-word-list').append(view.$el);
+            }
+        }
+    });
+
     var AppView = Backbone.View.extend({
         el: $('.js-app'),
-        initialize: function(indexCollection) {
-            this.contentViews = [];
-
-            // We need to bind this to these functions, otherwise, the 'this' would lost in the subsequent calls
-            // todo: Do a proper research on bind, bindAll !!
-            _.bindAll(this, 'unbindContentView');
+        initialize: function() {
             _.bindAll(this, 'renderSubViews');
-
-            this.indexCollection = indexCollection;
             this.renderSubViews();
         },
         renderSubViews: function() {
             new HeaderView({el: $('.js-top-bar'), model: header}).render();
-
-            this.contentViews.push(new WordListIndexView({collection: this.indexCollection}).render());
-
             new FooterView({el: $('.js-footer-menu')}).render();
-        },
-        unbindContentView: function() {
-            $.each(this.contentViews, function(i, view) {
-                $(view.el).off();
-            });
         }
+
     });
 
     return {
         'AppView': AppView,
-        'WordListView': WordListView
+        'WordListView': WordListView,
+        'WordListIndexView': WordListIndexView,
+        'BookmarkListView': BookmarkListView
     }
 });

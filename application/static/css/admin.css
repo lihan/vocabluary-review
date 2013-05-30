@@ -6254,22 +6254,26 @@ form span.prefix, form span.postfix { border-color: #ecf0f1; }
 
 /* '' */
 /* line 57, ../sass/_fonts.scss */
+.myicon-minus-circled:before { content: '\e803'; }
+
+/* '' */
+/* line 58, ../sass/_fonts.scss */
 .myicon-down-circled:before { content: '\e804'; }
 
 /* '' */
-/* line 58, ../sass/_fonts.scss */
+/* line 59, ../sass/_fonts.scss */
 .myicon-right-circled:before { content: '\e802'; }
 
 /* '' */
-/* line 59, ../sass/_fonts.scss */
+/* line 60, ../sass/_fonts.scss */
 .myicon-chart-bar:before { content: '\e801'; }
 
 /* '' */
-/* line 60, ../sass/_fonts.scss */
+/* line 61, ../sass/_fonts.scss */
 .myicon-bookmarks:before { content: '\e806'; }
 
 /* '' */
-/* line 61, ../sass/_fonts.scss */
+/* line 62, ../sass/_fonts.scss */
 .myicon-book-alt:before { content: '\e800'; }
 
 /* '' */

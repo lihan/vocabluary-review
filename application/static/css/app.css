@@ -6254,22 +6254,26 @@ form span.prefix, form span.postfix { border-color: #ecf0f1; }
 
 /* '' */
 /* line 57, ../sass/_fonts.scss */
+.myicon-minus-circled:before { content: '\e803'; }
+
+/* '' */
+/* line 58, ../sass/_fonts.scss */
 .myicon-down-circled:before { content: '\e804'; }
 
 /* '' */
-/* line 58, ../sass/_fonts.scss */
+/* line 59, ../sass/_fonts.scss */
 .myicon-right-circled:before { content: '\e802'; }
 
 /* '' */
-/* line 59, ../sass/_fonts.scss */
+/* line 60, ../sass/_fonts.scss */
 .myicon-chart-bar:before { content: '\e801'; }
 
 /* '' */
-/* line 60, ../sass/_fonts.scss */
+/* line 61, ../sass/_fonts.scss */
 .myicon-bookmarks:before { content: '\e806'; }
 
 /* '' */
-/* line 61, ../sass/_fonts.scss */
+/* line 62, ../sass/_fonts.scss */
 .myicon-book-alt:before { content: '\e800'; }
 
 /* '' */
@@ -6282,18 +6286,27 @@ ul.word-index-list { list-style: none; }
 ul.word-index-list > li { cursor: pointer; background: #F5F5F5; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 10px; margin-bottom: 7px; }
 /* line 77, ../sass/app.scss */
 ul.word-index-list > li .icon { float: right; }
+/* line 80, ../sass/app.scss */
+ul.word-index-list > li:hover { background-color: #2c3e50; color: #FFFFFF; }
+/* line 84, ../sass/app.scss */
+ul.word-index-list > li:active { background-color: #c0392b; color: #FFFFFF; }
 
-/* line 83, ../sass/app.scss */
-.footer-menu { width: 100%; position: fixed; margin: 5px 0 0 0; bottom: 0; }
-/* line 88, ../sass/app.scss */
-.footer-menu > .row > ul { list-style: none; }
 /* line 91, ../sass/app.scss */
-.footer-menu > .row > ul li { cursor: pointer; padding: 6px 0; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000023), color-stop(5%, #000023), color-stop(100%, #000000)); background-image: -webkit-linear-gradient(#000023, #000023 5%, #000000); background-image: -moz-linear-gradient(#000023, #000023 5%, #000000); background-image: -o-linear-gradient(#000023, #000023 5%, #000000); background-image: linear-gradient(#000023, #000023 5%, #000000); }
-/* line 93, ../sass/app.scss */
-.footer-menu > .row > ul li i { color: #FFFFFF; margin: 0 auto; }
-/* line 97, ../sass/app.scss */
-.footer-menu > .row > ul li div { text-align: center; }
+.footer-menu { width: 100%; position: fixed; margin: 5px 0 0 0; bottom: 0; }
+/* line 96, ../sass/app.scss */
+.footer-menu > .row > ul { list-style: none; }
+/* line 98, ../sass/app.scss */
+.footer-menu > .row > ul li { position: relative; cursor: pointer; padding: 6px 0; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000023), color-stop(5%, #000023), color-stop(100%, #000000)); background-image: -webkit-linear-gradient(#000023, #000023 5%, #000000); background-image: -moz-linear-gradient(#000023, #000023 5%, #000000); background-image: -o-linear-gradient(#000023, #000023 5%, #000000); background-image: linear-gradient(#000023, #000023 5%, #000000); }
 /* line 100, ../sass/app.scss */
+.footer-menu > .row > ul li i { color: #FFFFFF; margin: 0 auto; }
+/* line 104, ../sass/app.scss */
+.footer-menu > .row > ul li div { text-align: center; }
+/* line 107, ../sass/app.scss */
 .footer-menu > .row > ul li a { color: #FFFFFF; }
-/* line 103, ../sass/app.scss */
+/* line 110, ../sass/app.scss */
+.footer-menu > .row > ul li .footer-menu-title { font-size: 13px; }
+/* line 113, ../sass/app.scss */
 .footer-menu > .row > ul li.active { background: #34495e; }
+
+/* line 128, ../sass/app.scss */
+.notification-bubble { background: #FF0000; right: 44px; top: -13px; text-align: center; border-radius: 17px; line-height: 18px; min-width: 21px; border: 2px solid #FFFFFF; }

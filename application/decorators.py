@@ -8,7 +8,7 @@ Decorators for URL handlers
 from functools import wraps
 from google.appengine.api import users
 from flask import redirect, request, abort
-
+from flask import g, request, redirect, url_for
 
 def login_required(func):
     """Requires standard login credentials"""
