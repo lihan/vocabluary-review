@@ -6309,4 +6309,4 @@ ul.word-index-list > li:active { background-color: #c0392b; color: #FFFFFF; }
 .footer-menu > .row > ul li.active { background: #34495e; }
 
 /* line 128, ../sass/app.scss */
-.notification-bubble { background: #FF0000; right: 44px; top: -13px; text-align: center; border-radius: 17px; line-height: 18px; min-width: 21px; border: 2px solid #FFFFFF; }
+.notification-bubble { position: absolute; color: #FFFFFF; background: #FF0000; right: 44px; top: -13px; text-align: center; border-radius: 17px; line-height: 18px; min-width: 21px; border: 2px solid #FFFFFF; }

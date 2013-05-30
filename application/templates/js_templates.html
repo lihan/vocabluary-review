@@ -75,6 +75,9 @@
                     <div class="footer-menu-title">
                         Bookmark
                     </div>
+                    <% if (collection.length > 0) { %>
+                        <span class="notification-bubble"><%= collection.length %></span>
+                    <% } %>
                 </a>
             </li>
         </ul>

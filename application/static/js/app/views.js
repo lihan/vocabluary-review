@@ -13,7 +13,9 @@ function(Backbone, _, Models, Collections) {
     var header = new Models.Header();
     var BookmarkedWord = Models.BookmarkedWord;
 
+    var bookmarkedWordCollection = new Collections.BookmarkedWordCollection();
 
+    bookmarkedWordCollection.fetch();
 
 
     var HeaderView = Backbone.View.extend({
@@ -29,8 +31,12 @@ function(Backbone, _, Models, Collections) {
 
     var FooterView = Backbone.View.extend({
         template: _.template($('.tmpl-footer').html()),
+        collection: bookmarkedWordCollection,
+        initialize: function() {
+            this.listenTo(this.collection, 'all', this.render);
+        },
         render: function() {
-            this.$el.html(this.template({}));
+            this.$el.html(this.template({collection: this.collection}));
             return this;
         }
     });
@@ -56,7 +62,17 @@ function(Backbone, _, Models, Collections) {
                     'id': wordId
                 }
             });
-            bookmark.save();
+
+            var found = bookmarkedWordCollection.find(function(bookmarkedWord){
+                return bookmarkedWord.get('word').id == bookmark.get('word').id
+            });
+            if (!found) {
+                bookmark.save(bookmark.toJSON(), {
+                   success: function(model, resp, options){
+                        bookmarkedWordCollection.push(bookmark);
+                   }
+                });
+            }
         },
         render: function() {
             var self = this;
@@ -125,16 +141,15 @@ function(Backbone, _, Models, Collections) {
         }
     });
 
+
     var BookmarkListView = Backbone.View.extend({
         el: $('.js-main-view'),
         template: _.template($('.tmpl-bookmark-view').html()),
         initialize: function() {
             this.render();
-            this.bookmarkedWordCollection = new Collections.BookmarkedWordCollection();
-            this.bookmarkedWordCollection
-            this.bookmarkedWordCollection.fetch();
             this.renderCollection();
-            this.listenTo(this.bookmarkedWordCollection, 'add', this.addItem);
+            bookmarkedWordCollection.fetch();
+            this.listenTo(bookmarkedWordCollection, 'add', this.addItem);
         },
         render: function() {
             this.$el.html(this.template({}));
@@ -143,17 +158,17 @@ function(Backbone, _, Models, Collections) {
         renderCollection: function() {
 
             var i = 0,
-                j = this.bookmarkedWordCollection.length;
+                j = bookmarkedWordCollection.length;
 
             for (; i < j; i++) {
-                var instance = this.bookmarkedWordCollection.models[i];
+                var instance = bookmarkedWordCollection.models[i];
                 this.addItem(instance);
             }
         },
         addItem: function(instance) {
             var $el = $(this.el);
 
-            if (this.bookmarkedWordCollection.indexOf(instance) != -1) {
+            if (bookmarkedWordCollection.indexOf(instance) != -1) {
                 view = new BookmarkItemView({
                     model: instance
                 });
@@ -172,7 +187,6 @@ function(Backbone, _, Models, Collections) {
             new HeaderView({el: $('.js-top-bar'), model: header}).render();
             new FooterView({el: $('.js-footer-menu')}).render();
         }
-
     });
 
     return {
